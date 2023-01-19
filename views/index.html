@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
+
+    <title>Турагентство</title>
+    <link rel="stylesheet" href="../static/css/main.css">
+</head>
+<body>
+<noscript>
+    Для работы с сайтом необходимо включить JavaScript!
+</noscript>
+<header>
+    <h1>Турагентство</h1>
+</header>
+<main>
+    <form class="search">
+        <div class="search__item">
+            <label for="departure">Город вылета</label>
+            <select name="departure" id="departure" onchange="fillResorts()">
+            </select>
+        </div>
+
+        <div class="search__item">
+            <label for="resort">Курорт</label>
+            <select name="resort" id="resort">
+            </select>
+        </div>
+
+        <div class="search__item">
+            <label for="dates">Даты вылета</label>
+            <input type="text" name="dates" id="dates">
+        </div>
+
+        <script>$('input[name="dates"]').daterangepicker(
+            {
+                startDate: moment().add(1, 'days'),
+                endDate: moment().add(8, 'days'),
+                minDate: moment().add(1, 'days'),
+                maxDate: moment().add(6, 'months'),
+            }
+        );</script>
+
+
+        <div class="search__item">
+            <label>Дней</label>
+            <div class="range">
+                <input type="number" name="duration_1" id="duration_1" value="6" min="1" max="32"
+                       oninput="if (this.value.length > 2) {this.value = this.value.slice(0,2);}">
+                -
+                <input type="number" name="duration_2" id="duration_2" value="14" min="1" max="32"
+                       oninput="if (this.value.length > 2) {this.value = this.value.slice(0,2);}">
+            </div>
+        </div>
+
+        <input type="button" name="find" id="find" value="Найти туры" onclick="searchTours()">
+
+    </form>
+    <div class="container" id="container">
+
+    </div>
+</main>
+<script src="/static/js/main.js"></script>
+<script>fillDepartures()</script>
+<script>fillResorts()</script>
+</body>
+</html>
